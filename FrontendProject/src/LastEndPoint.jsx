@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 
-function LastEndPoint({ userId = 1 }) {
+function LastEndPoint({ postId = 1 }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [commentsMap, setCommentsMap] = useState({});
 
   const TOKEN =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQzNzQ3NDIyLCJpYXQiOjE3NDM3NDcxMjIsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsInN1YiI6ImUyMmNzZXUwODI5QGJlbm5ldHQuZWR1LmluIn0sImVtYWlsIjoiZTIyY3NldTA4MjlAYmVubmV0dC5lZHUuaW4iLCJuYW1lIjoia2FydGlrZXkiLCJyb2xsTm8iOiJlMjJjc2V1MDgyOSIsImFjY2Vzc0NvZGUiOiJydENIWkoiLCJjbGllbnRJRCI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsImNsaWVudFNlY3JldCI6IkRDZnpmdEFoQXdxWnFra20ifQ.v9CZz140L0Ua-5xPN8ttVCtLL2eiLcJOCxIOBVLrpkw";
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQzNzQ3Nzc0LCJpYXQiOjE3NDM3NDc0NzQsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsInN1YiI6ImUyMmNzZXUwODI5QGJlbm5ldHQuZWR1LmluIn0sImVtYWlsIjoiZTIyY3NldTA4MjlAYmVubmV0dC5lZHUuaW4iLCJuYW1lIjoia2FydGlrZXkiLCJyb2xsTm8iOiJlMjJjc2V1MDgyOSIsImFjY2Vzc0NvZGUiOiJydENIWkoiLCJjbGllbnRJRCI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsImNsaWVudFNlY3JldCI6IkRDZnpmdEFoQXdxWnFra20ifQ.TCx0LHx0cZ6HKA8kp0_nrw2tNNkEqx4zbALrRcpgv_0";
 
   const fetchUserPosts = async () => {
     try {
       const res = await fetch(
-        `http://20.244.56.144/evaluation-service/posts/${userId}/comments`,
+        `http://20.244.56.144/evaluation-service/posts/${postId}/comments`,
         {
           headers: { Authorization: TOKEN },
         }
@@ -24,7 +24,7 @@ function LastEndPoint({ userId = 1 }) {
       const commentResults = await Promise.all(
         posts.map(async (post) => {
           const commentRes = await fetch(
-            `http://20.244.56.144/evaluation-service/posts/${post.id}/comments`,
+            `http://20.244.56.144/evaluation-service/posts/${postId}/comments`,
             { headers: { Authorization: TOKEN } }
           );
           const commentData = await commentRes.json();
@@ -47,12 +47,12 @@ function LastEndPoint({ userId = 1 }) {
 
   useEffect(() => {
     fetchUserPosts();
-  }, [userId]);
+  }, [postId]);
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold text-center mb-4 text-blue-600">
-        Posts by User {userId}
+        Posts by User {postId}
       </h1>
 
       {loading ? (
