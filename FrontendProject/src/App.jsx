@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserPost from "./UserPost";
 import { useParams } from "react-router-dom";
 import Users from "./User";
+import LastEndPoint from "./LastEndPoint";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/user/:userId/posts" element={<UserPostsWrapper />} />
         <Route path="/" element={<Users />} />
+        <Route path="/posts/:postId/comments" element={<LastEndPoint />} />
         {/* You can add other routes here too */}
       </Routes>
     </Router>

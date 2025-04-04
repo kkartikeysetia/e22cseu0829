@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function UserPosts({ userId = 1 }) {
+function UserPost({ userId = 1 }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -11,7 +11,7 @@ function UserPosts({ userId = 1 }) {
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQzNzQ2MTg1LCJpYXQiOjE3NDM3NDU4ODUsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsInN1YiI6ImUyMmNzZXUwODI5QGJlbm5ldHQuZWR1LmluIn0sImVtYWlsIjoiZTIyY3NldTA4MjlAYmVubmV0dC5lZHUuaW4iLCJuYW1lIjoia2FydGlrZXkiLCJyb2xsTm8iOiJlMjJjc2V1MDgyOSIsImFjY2Vzc0NvZGUiOiJydENIWkoiLCJjbGllbnRJRCI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsImNsaWVudFNlY3JldCI6IkRDZnpmdEFoQXdxWnFra20ifQ.riO4C_9cqONLa7RuZPzKmbLlym-CdekKFBWMTfrG5dE",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQzNzQ3MDE2LCJpYXQiOjE3NDM3NDY3MTYsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsInN1YiI6ImUyMmNzZXUwODI5QGJlbm5ldHQuZWR1LmluIn0sImVtYWlsIjoiZTIyY3NldTA4MjlAYmVubmV0dC5lZHUuaW4iLCJuYW1lIjoia2FydGlrZXkiLCJyb2xsTm8iOiJlMjJjc2V1MDgyOSIsImFjY2Vzc0NvZGUiOiJydENIWkoiLCJjbGllbnRJRCI6ImZjYmIyNGEyLTMyM2EtNDU5OS04ODY4LWUyNmMzMGE0YTFhMiIsImNsaWVudFNlY3JldCI6IkRDZnpmdEFoQXdxWnFra20ifQ.CGRwnNEXFDg4-CKq-NWUrdM5J0zUEshFbxaOemM4ARA",
           },
         }
       );
@@ -21,6 +21,7 @@ function UserPosts({ userId = 1 }) {
       }
 
       const data = await response.json();
+      console.log("Fetched data:", data); // Debugging line
       setPosts(data.posts || []);
     } catch (error) {
       console.error("Error fetching posts:", error.message);
@@ -59,4 +60,4 @@ function UserPosts({ userId = 1 }) {
   );
 }
 
-export default UserPosts;
+export default UserPost;
